@@ -9,3 +9,8 @@
 /build
 /captures
 .externalNativeBuild
+navEditor.xml
+misc.xml
+runConfigurations.xml
+gradle.xml
+codeStyles/**/*
