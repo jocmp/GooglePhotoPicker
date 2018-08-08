@@ -1,8 +1,8 @@
 # Google Photo Picker
 
-A simple app to pick a photo, save to internal app storage, and share
+A simple demo app to pick a photo, save to internal app storage, and share
 
-* Once selected, tap the image to share
+![Demo screenshot](https://github.com/jocmp/GooglePhotoPicker/blob/master/screenshots/screenshot.png)
 
 ## Technical stuff
 
