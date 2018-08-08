@@ -53,5 +53,3 @@ class Action<T> : MutableLiveData<T>() {
         value = action
     }
 }
-
-fun CharSequence?.isPresent() = !isNullOrBlank()

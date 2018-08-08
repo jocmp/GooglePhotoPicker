@@ -1,27 +1,23 @@
 package com.josiahcampbell.googlephotopicker
 
-import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.content.Intent.*
-import android.net.Uri.*
+import android.net.Uri.parse
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.webkit.MimeTypeMap.getFileExtensionFromUrl
 import android.widget.ImageView
-import androidx.core.content.FileProvider.*
+import androidx.core.content.FileProvider.getUriForFile
 import androidx.databinding.BindingAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import backgroundPool
 import com.josiahcampbell.googlephotopicker.BuildConfig.APPLICATION_ID
 import com.josiahcampbell.googlephotopicker.databinding.MainFragmentBinding
 import kotlinx.coroutines.experimental.launch
 import java.io.File
-import java.io.InputStream
 import java.util.*
 
 const val ACTION_PICK_REQUEST_CODE = 200
@@ -70,7 +66,7 @@ class MainFragment : Fragment() {
     }
 
     fun savePhoto(contentUrl: String?) {
-        if (!contentUrl.isNullOrBlank()) {
+        if (contentUrl.isPresent()) {
             launch(backgroundPool) {
                 val contentResolver = context!!.contentResolver
                 val extension = contentResolver.getType(parse(contentUrl))?.split("/")?.last() ?: ""
@@ -80,10 +76,6 @@ class MainFragment : Fragment() {
             }
         }
     }
-}
-
-fun File.writeFromInputStream(inputStream: InputStream?) {
-    inputStream?.use { input -> outputStream().use { output -> input.copyTo(outputStream()) } }
 }
 
 @BindingAdapter("imageUrl")
